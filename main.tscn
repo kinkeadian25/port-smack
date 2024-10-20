@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://bl67ubb8x8kqp"]
+
+[ext_resource type="Script" path="res://Main.cs" id="1_xad85"]
+[ext_resource type="Script" path="res://Player.cs" id="2_ucxia"]
+[ext_resource type="Texture2D" uid="uid://bro4ldr3qpjl2" path="res://art/dummy_player/playerGrey_up1.png" id="3_nihvw"]
+[ext_resource type="Texture2D" uid="uid://b7vvyj0anuhjg" path="res://art/dummy_player/playerGrey_up2.png" id="4_xqihy"]
+[ext_resource type="Texture2D" uid="uid://b52fs1lu6m665" path="res://art/dummy_player/playerGrey_walk1.png" id="5_v00dh"]
+[ext_resource type="Texture2D" uid="uid://lxsnq0rob8by" path="res://art/dummy_player/playerGrey_walk2.png" id="6_eklm4"]
+[ext_resource type="Script" path="res://FishingPole.cs" id="7_iollv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_hvs8w"]
+blend_mode = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oxk8x"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nihvw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xqihy")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_v00dh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eklm4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fugib"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1hetv"]
+
+[node name="Node2D" type="Node2D"]
+material = SubResource("CanvasItemMaterial_hvs8w")
+script = ExtResource("1_xad85")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="ParallaxBackground"]
+offset_right = 22.0
+offset_bottom = 71.0
+scale = Vector2(29.36, 16.16)
+color = Color(0.156863, 0.211765, 0.823529, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect2" type="ColorRect" parent="ParallaxBackground"]
+offset_left = 128.0
+offset_top = 78.0
+offset_right = 194.0
+offset_bottom = 146.0
+scale = Vector2(5.824, 13.2739)
+color = Color(0.390155, 0.131538, 0.0435782, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="Player" type="Area2D" parent="."]
+position = Vector2(315, 765)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("2_ucxia")
+
+[node name="PlayerAnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_oxk8x")
+animation = &"up"
+
+[node name="PlayerCollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -2)
+scale = Vector2(5, 4.36)
+shape = SubResource("CapsuleShape2D_fugib")
+
+[node name="FishingPole" type="Area2D" parent="."]
+position = Vector2(160, 241)
+script = ExtResource("7_iollv")
+
+[node name="ColorRect" type="ColorRect" parent="FishingPole"]
+offset_right = 40.0
+offset_bottom = 40.0
+rotation = -2.35619
+scale = Vector2(4.2257, 0.197158)
+metadata/_edit_use_anchors_ = true
+
+[node name="FishingPoleCollisionShape2D" type="CollisionShape2D" parent="FishingPole"]
+rotation = 2.87979
+scale = Vector2(1.5, 1.5)
+shape = SubResource("CircleShape2D_1hetv")
+
+[connection signal="area_entered" from="FishingPole" to="." method="_on_fishing_pole_area_entered"]
