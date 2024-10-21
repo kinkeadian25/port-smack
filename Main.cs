@@ -8,6 +8,7 @@ using Godot;
 // The game plays a lot like a tycoon game, but with a lot more focus on the individual crew members and the boat itself.
 // Early on you are faced by challenges like having 3 fish on the line but only the ability to reel in one by yourself. 
 // These are the changes that will e fixed by pulling into port upgrading fishing gear and your boat and hiring crew.
+//bait crafting mini game
 public partial class Main : Node2D
 {
 	// Called when the node enters the scene tree for the first time.

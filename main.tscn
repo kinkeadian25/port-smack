@@ -55,6 +55,9 @@ color = Color(0.156863, 0.211765, 0.823529, 1)
 metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="ParallaxBackground"]
+anchors_preset = -1
+anchor_left = 0.0493827
+anchor_right = 0.0416667
 offset_left = 128.0
 offset_top = 78.0
 offset_right = 194.0
@@ -78,7 +81,7 @@ scale = Vector2(5, 4.36)
 shape = SubResource("CapsuleShape2D_fugib")
 
 [node name="FishingPole" type="Area2D" parent="."]
-position = Vector2(160, 241)
+position = Vector2(214, 393)
 script = ExtResource("7_iollv")
 
 [node name="ColorRect" type="ColorRect" parent="FishingPole"]
@@ -92,5 +95,16 @@ metadata/_edit_use_anchors_ = true
 rotation = 2.87979
 scale = Vector2(1.5, 1.5)
 shape = SubResource("CircleShape2D_1hetv")
+
+[node name="LineColor" type="ColorRect" parent="FishingPole"]
+offset_left = -114.0
+offset_top = -325.0
+offset_right = 90.0
+offset_bottom = -322.0
+rotation = 1.5708
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 
 [connection signal="area_entered" from="FishingPole" to="." method="_on_fishing_pole_area_entered"]
